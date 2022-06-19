@@ -1,7 +1,5 @@
 import Foundation
 
-typealias PokemonList = [Pokemon]
-
 struct Pokemon: Codable, Identifiable, Equatable {
     var id: String { name }
     let name: String
@@ -12,7 +10,7 @@ struct PokemonListDataModel: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    var results: PokemonList = []
+    var results: [Pokemon] = []
 }
 
 extension PokemonListDataModel {
@@ -28,7 +26,7 @@ extension PokemonListDataModel {
                                                           ])
 }
 
-struct PokemonDetailDataModel: Codable {
+struct PokemonDetailsDataModel: Codable {
     let name: String
     let weight: Int
     let height: Int
@@ -85,8 +83,8 @@ struct PokemonDetailDataModel: Codable {
     }
 }
 
-extension PokemonDetailDataModel {
-    static let stubPokemonDetail: PokemonDetailDataModel = PokemonDetailDataModel(name: "bulbasaur", weight: 69, height: 7, stats: [
+extension PokemonDetailsDataModel {
+    static let stubPokemonDetail: PokemonDetailsDataModel = PokemonDetailsDataModel(name: "bulbasaur", weight: 69, height: 7, stats: [
         PokemonStats(base_stat: 45, effort: 0, stat: PokemonStats.Stat(name: "hp", url: "https://pokeapi.co/api/v2/stat/1/")),
         PokemonStats(base_stat: 49, effort: 0, stat: PokemonStats.Stat(name: "attack", url: "https://pokeapi.co/api/v2/stat/2/")),
         PokemonStats(base_stat: 49, effort: 0, stat: PokemonStats.Stat(name: "defense", url: "https://pokeapi.co/api/v2/stat/3/")),

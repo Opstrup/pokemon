@@ -20,7 +20,7 @@ class PokemonViewModel: ObservableObject {
     }
     
     struct State {
-        var pokemonList: PokemonList = []
+        var pokemonList: [Pokemon] = []
         var isLoading = true
         var nextPageURL: URL?
         var error: String?

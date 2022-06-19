@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PokemonDetailScene: View {
+struct PokemonDetailsView: View {
     @ObservedObject private var viewModel = PokemonDetailsViewModel()
     let pokemon: Pokemon
     
@@ -8,7 +8,7 @@ struct PokemonDetailScene: View {
         VStack {
             PokemonNameHeaderView(name: pokemon.name)
             
-            PokemonDetailsView(
+            PokemonDetails(
                 pokemonDetails: viewModel.state.pokemonDetails,
                 isLoading: viewModel.state.isLoading,
                 error: viewModel.state.error
@@ -22,8 +22,8 @@ struct PokemonDetailScene: View {
     }
 }
 
-struct PokemonDetailsView: View {
-    let pokemonDetails: PokemonDetailDataModel?
+struct PokemonDetails: View {
+    let pokemonDetails: PokemonDetailsDataModel?
     let isLoading: Bool
     let error: String?
     
@@ -127,10 +127,10 @@ struct PokemonNameHeaderView: View {
     }
 }
 
-struct PokemonDetailScene_Previews: PreviewProvider {
+struct PokemonDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonDetailsView(pokemonDetails: PokemonDetailDataModel.stubPokemonDetail, isLoading: false, error: nil)
-        PokemonDetailsView(pokemonDetails: nil, isLoading: true, error: nil)
-        PokemonDetailScene(pokemon: PokemonListDataModel.stubListPokemon.results.first!)
+        PokemonDetails(pokemonDetails: PokemonDetailsDataModel.stubPokemonDetail, isLoading: false, error: nil)
+        PokemonDetails(pokemonDetails: nil, isLoading: true, error: nil)
+        PokemonDetailsView(pokemon: PokemonListDataModel.stubListPokemon.results.first!)
     }
 }

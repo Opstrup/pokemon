@@ -13,7 +13,7 @@ class PokemonDetailsViewModel: ObservableObject {
     }
     
     struct State {
-        var pokemonDetails: PokemonDetailDataModel?
+        var pokemonDetails: PokemonDetailsDataModel?
         var isLoading = true
         var error: String? = nil
     }
@@ -29,7 +29,7 @@ class PokemonDetailsViewModel: ObservableObject {
             self.state.isLoading = false
         }
     
-    private func onReceivePokemonDetails(_ pokemonDetails: PokemonDetailDataModel) {
+    private func onReceivePokemonDetails(_ pokemonDetails: PokemonDetailsDataModel) {
         self.state.pokemonDetails = pokemonDetails
     }
 }

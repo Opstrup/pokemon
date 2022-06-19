@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct PokemonListScene: View {
+struct PokemonListView: View {
     @ObservedObject private var viewModel = PokemonViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                PokemonListView(
+                PokemonList(
                     pokemonList: viewModel.state.pokemonList,
                     isLoading: viewModel.state.isLoading,
                     onScrolledAtBottom: viewModel.fetchPokemons,
@@ -19,8 +19,8 @@ struct PokemonListScene: View {
     }
 }
 
-struct PokemonListView: View {
-    let pokemonList: PokemonList
+struct PokemonList: View {
+    let pokemonList: [Pokemon]
     let isLoading: Bool
     let onScrolledAtBottom: () -> Void
     let error: String?
@@ -36,7 +36,7 @@ struct PokemonListView: View {
             
             List {
                 ForEach(pokemonList) { pokemon in
-                    NavigationLink(destination: PokemonDetailScene(pokemon: pokemon)) {
+                    NavigationLink(destination: PokemonDetailsView(pokemon: pokemon)) {
                         PokemonListRow(pokemon: pokemon).onAppear {
                             if self.pokemonList.last == pokemon {
                                 self.onScrolledAtBottom()
@@ -73,10 +73,10 @@ struct PokemonListRow: View {
 
 struct PokemonListView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonListScene()
-        PokemonListView(pokemonList: PokemonListDataModel.stubListPokemon.results, isLoading: false, onScrolledAtBottom: {}, error: nil)
-        PokemonListView(pokemonList: PokemonListDataModel.stubListPokemon.results, isLoading: true, onScrolledAtBottom: {}, error: nil)
-        PokemonListView(pokemonList: [], isLoading: true, onScrolledAtBottom: {}, error: nil)
-        PokemonListView(pokemonList: [], isLoading: false, onScrolledAtBottom: {}, error: "Failed to fetch pokemons...")
+        PokemonListView()
+        PokemonList(pokemonList: PokemonListDataModel.stubListPokemon.results, isLoading: false, onScrolledAtBottom: {}, error: nil)
+        PokemonList(pokemonList: PokemonListDataModel.stubListPokemon.results, isLoading: true, onScrolledAtBottom: {}, error: nil)
+        PokemonList(pokemonList: [], isLoading: true, onScrolledAtBottom: {}, error: nil)
+        PokemonList(pokemonList: [], isLoading: false, onScrolledAtBottom: {}, error: "Failed to fetch pokemons...")
     }
 }

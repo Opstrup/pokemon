@@ -4,7 +4,7 @@ import SwiftUI
 struct pokemonApp: App {
     var body: some Scene {
         WindowGroup {
-            PokemonListScene()
+            PokemonListView()
         }
     }
 }

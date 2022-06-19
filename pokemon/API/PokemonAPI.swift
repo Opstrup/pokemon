@@ -14,10 +14,10 @@ enum PokemonAPI {
             .eraseToAnyPublisher()
     }
     
-    static func fetchPokemonDetails(_ pokemonDetailsURL: URL) -> AnyPublisher<PokemonDetailDataModel, Error> {
+    static func fetchPokemonDetails(_ pokemonDetailsURL: URL) -> AnyPublisher<PokemonDetailsDataModel, Error> {
         URLSession.shared
             .dataTaskPublisher(for: URLRequest(url: pokemonDetailsURL))
-            .tryMap { try JSONDecoder().decode(PokemonDetailDataModel.self, from: $0.data) }
+            .tryMap { try JSONDecoder().decode(PokemonDetailsDataModel.self, from: $0.data) }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
