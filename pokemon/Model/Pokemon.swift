@@ -60,7 +60,7 @@ struct PokemonDetailsDataModel: Codable {
             let url: String
         }
         
-        enum ElementType: String, CodingKey, Codable {
+        enum ElementType: String, Codable {
             case normal
             case fire
             case water
